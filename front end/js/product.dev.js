@@ -1,7 +1,7 @@
-//Récupération de l'id via les paramètres de l'url
+//la récupération de l'id via les paramètres de l'url
 const idProduct = new URL(window.location.href).searchParams.get("id");
 
-//Récupération des sélecteurs pour les futurs modifications
+//La récupération des sélecteurs pour les futurs modifications
 let titleProduct = document.getElementById("title");
 let priceProduct = document.getElementById("price");
 let descriptionProduct = document.getElementById("description");
@@ -10,10 +10,10 @@ let imgProduct = document.querySelector(".item__img");
 let img = document.createElement("img");
 imgProduct.appendChild(img);
 
-//Récupération de l'article grace a l'id + affichage des données de ce dernier
+//La récupération de l'article grace a l'id + affichage des données de ce dernier
 getArticle();
 
-//Récupération de l'article grace a l'id + affichage des données de ce dernier
+//La récupération de l'article grace a l'id + affichage des données de ce dernier
 async function getArticle() {
      await fetch("http://localhost:3000/api/products/" + idProduct)
     .then((response) => response.json())    
@@ -34,7 +34,7 @@ async function getArticle() {
     });          
 }
 
-// Ajouté un article au panier
+//l' Ajout un article au panier
 let addToCartBtn = document.getElementById("addToCart");
 addToCartBtn.addEventListener("click", addToCart);
 
