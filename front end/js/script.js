@@ -1,4 +1,4 @@
-//Récupérer du tableau de produits disponibles
+//La récupération du tableau de produits disponibles
 getProducts();
 
 
