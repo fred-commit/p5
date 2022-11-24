@@ -12,65 +12,65 @@ if (!productLocalStorage) {
 
     for (let i=0; i < productLocalStorage.length; i++) {
 
-        // Création de la balise "article" et insertion dans la section
+        //La création de la balise "article" et insertion dans la section
         let productArticle = document.createElement("article");
         document.querySelector("#cart__items").appendChild(productArticle);
         productArticle.className = "cart__item";
         productArticle.setAttribute("data-id", productLocalStorage[i].idKanap);
 
-        // Insertion de l'élément "div" pour l'image produit
+        //L' insertion de l'élément "div" pour l'image produit
         let productDivImg = document.createElement("div");
         productArticle.appendChild(productDivImg);
         productDivImg.className = "cart__item__img";
 
-        // Insertion de l'image
+        //L'insertion de l'image
         let productImg = document.createElement("img");
         productDivImg.appendChild(productImg);
         productImg.src = productLocalStorage[i].imgKanap;
         // productImg.alt = productLocalStorage.altImgProduit;
         
-        // Insertion de l'élément "div" pour la description produit
+        //L'insertion de l'élément "div" pour la description produit
         let productItemContent = document.createElement("div");
         productArticle.appendChild(productItemContent);
         productItemContent.className = "cart__item__content";
 
-        // Insertion de l'élément "div"
+        //L'insertion de l'élément "div"
         let productItemContentTitlePrice = document.createElement("div");
         productItemContent.appendChild(productItemContentTitlePrice);
         productItemContentTitlePrice.className = "cart__item__content__titlePrice";
         
-        // Insertion du titre h2
+        //L'Insertion du titre h2
         let productTitle = document.createElement("h2");
         productItemContentTitlePrice.appendChild(productTitle);
         productTitle.innerHTML = productLocalStorage[i].nameKanap;
 
-        // Insertion de la couleur
+        //L'Insertion de la couleur
         let productColor = document.createElement("p");
         productTitle.appendChild(productColor);
         productColor.innerHTML = productLocalStorage[i].colorKanap;
         productColor.style.fontSize = "20px";
 
-        // Insertion du prix
+        //L'insertion du prix
         let productPrice = document.createElement("p");
         productItemContentTitlePrice.appendChild(productPrice);
         productPrice.innerHTML = productLocalStorage[i].priceKanap + " €";
 
-        // Insertion de l'élément "div"
+        //L'insertion de l'élément "div"
         let productItemContentSettings = document.createElement("div");
         productItemContent.appendChild(productItemContentSettings);
         productItemContentSettings.className = "cart__item__content__settings";
 
-        // Insertion de l'élément "div"
+        //L'insertion de l'élément "div"
         let productItemContentSettingsQuantity = document.createElement("div");
         productItemContentSettings.appendChild(productItemContentSettingsQuantity);
         productItemContentSettingsQuantity.className = "cart__item__content__settings__quantity";
         
-        // Insertion de "Qté : "
+        //L'insertion de "Qté : "
         let productQty = document.createElement("p");
         productItemContentSettingsQuantity.appendChild(productQty);
         productQty.innerHTML = "Qté : ";
 
-        // Insertion de la quantité
+        //l'insertion de la quantité
         let productQuantity = document.createElement("input");
         productItemContentSettingsQuantity.appendChild(productQuantity);
         productQuantity.value = productLocalStorage[i].qtyKanap;
@@ -85,7 +85,7 @@ if (!productLocalStorage) {
         productItemContentSettings.appendChild(productItemContentSettingsDelete);
         productItemContentSettingsDelete.className = "cart__item__content__settings__delete";
 
-        // Insertion de "p" supprimer
+        //L'insertion de "p" supprimer
         let productSupprimer = document.createElement("p");
         productItemContentSettingsDelete.appendChild(productSupprimer);
         productSupprimer.className = "deleteItem";
@@ -93,20 +93,20 @@ if (!productLocalStorage) {
         productSupprimer.addEventListener("click", (e) => {
             e.preventDefault;
         
-            // enregistrer l'id et la couleur séléctionnés par le bouton supprimer
+            // Enregistrer l'id et la couleur séléctionnés par le bouton supprimer
             let deleteId = productLocalStorage[i].idKanap;
             let deleteColor = productLocalStorage[i].colorKanap;
 
-            // filtrer l'élément cliqué par le bouton supprimer
+            // Filtrer l'élément cliqué par le bouton supprimer
             productLocalStorage = productLocalStorage.filter( elt => elt.idKanap !== deleteId || elt.colorKanap !== deleteColor);
 
-            // envoyer les nouvelles données dans le localStorage
+            // Envoyer les nouvelles données dans le localStorage
             localStorage.setItem('cart', JSON.stringify(productLocalStorage));               
 
-            // avertir de la suppression et recharger la page
+            // Avertir de la suppression et recharger la page
             alert('Votre article a bien été supprimé.');
             
-            //Si pas de produits dans le local storage on affiche que le panier est vide
+            //S'il n'ya pas de produits dans le local storage on affiche que le panier est vide
             if (productLocalStorage.length === 0) {
                 localStorage.clear();
             }
@@ -118,7 +118,7 @@ if (!productLocalStorage) {
 
 function getTotals(){
 
-    // Récupération du total des quantités
+    //La récupération du total des quantités
     var elemsQtt = document.getElementsByClassName('itemQuantity');
     var myLength = elemsQtt.length,
     totalQtt = 0;
@@ -130,7 +130,7 @@ function getTotals(){
     let productTotalQuantity = document.getElementById('totalQuantity');
     productTotalQuantity.innerHTML = totalQtt;
 
-    // Récupération du prix total
+    //La récupération du prix total
     totalPrice = 0;
     for (var i = 0; i < myLength; ++i) {
         totalPrice += (elemsQtt[i].valueAsNumber * productLocalStorage[i].priceKanap);
@@ -149,7 +149,7 @@ function modifyQtt() {
         qttModif[k].addEventListener("change" , (event) => {
             event.preventDefault();
 
-            //Selection de l'element à modifier en fonction de son id ET sa couleur
+            //La sélection de l'element à modifier en fonction de son id ET sa couleur
             let quantityModif = productLocalStorage[k].qtyKanap;
             let qttModifValue = qttModif[k].valueAsNumber;
             
@@ -168,42 +168,42 @@ function modifyQtt() {
 modifyQtt();
 
 
-//Instauration formulaire avec regex
+//l'instauration formulaire avec regex
 function getForm() {
-    // Ajout des Regex
+    //l'ajout des Regex
     let form = document.querySelector(".cart__order__form");
 
-    //Création des expressions régulières
+    //la création des expressions régulières
     let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$');
     let charRegExp = new RegExp("^[a-zA-Z ,.'-]+$");
     let addressRegExp = new RegExp("^[0-9]{1,3}(?:(?:[,. ]){1}[-a-zA-Zàâäéèêëïîôöùûüç]+)+");
 
-    // Ecoute de la modification du prénom
+    //l'écoute de la modification du prénom
     form.firstName.addEventListener('change', function() {
         validFirstName(this);
     });
 
-    // Ecoute de la modification du prénom
+    //L'écoute de la modification du prénom
     form.lastName.addEventListener('change', function() {
         validLastName(this);
     });
 
-    // Ecoute de la modification du prénom
+    //l'écoute de la modification du prénom
     form.address.addEventListener('change', function() {
         validAddress(this);
     });
 
-    // Ecoute de la modification du prénom
+    // L'écoute de la modification du prénom
     form.city.addEventListener('change', function() {
         validCity(this);
     });
 
-    // Ecoute de la modification du prénom
+    //L'écoute de la modification du prénom
     form.email.addEventListener('change', function() {
         validEmail(this);
     });
 
-    //validation du prénom
+    //La validation du prénom
     const validFirstName = function(inputFirstName) {
         let firstNameErrorMsg = inputFirstName.nextElementSibling;
 
@@ -214,7 +214,7 @@ function getForm() {
         }
     };
 
-    //validation du nom
+    //La validation du nom
     const validLastName = function(inputLastName) {
         let lastNameErrorMsg = inputLastName.nextElementSibling;
 
@@ -225,7 +225,7 @@ function getForm() {
         }
     };
 
-    //validation de l'adresse
+    //La validation de l'adresse
     const validAddress = function(inputAddress) {
         let addressErrorMsg = inputAddress.nextElementSibling;
 
@@ -236,7 +236,7 @@ function getForm() {
         }
     };
 
-    //validation de la ville
+    //La validation de la ville
     const validCity = function(inputCity) {
         let cityErrorMsg = inputCity.nextElementSibling;
 
@@ -247,7 +247,7 @@ function getForm() {
         }
     };
 
-    //validation de l'email
+    //La validation de l'email
     const validEmail = function(inputEmail) {
         let emailErrorMsg = inputEmail.nextElementSibling;
 
@@ -265,7 +265,7 @@ function postForm() {
     order.addEventListener('click', (event) => {
     event.preventDefault();
   
-    // je récupère les données du formulaire dans un objet
+    //La récupération les données du formulaire dans un objet
     const contact = {
       firstName : document.getElementById('firstName').value,
       lastName : document.getElementById('lastName').value,
@@ -274,22 +274,22 @@ function postForm() {
       email : document.getElementById('email').value
     }
 
-    //Construction d'un array d'id depuis le local storage
+    //La construction d'un array d'id depuis le local storage
     let products = [];
     for (let i = 0; i<productLocalStorage.length;i++) {
         products.push(productLocalStorage[i].idKanap);
     }
     console.log(products);
   
-    // je mets les valeurs du formulaire et les produits sélectionnés
-    // dans un objet...
+    //Mettre des valeurs du formulaire et les produits sélectionnés
+    //dans un objet...
     const sendFormData = {
       contact,
       products,
     }
   
-    // j'envoie le formulaire + localStorage (sendFormData) 
-    // ... que j'envoie au serveur
+    //l'envoie du formulaire + localStorage (sendFormData) 
+    // ... qui envoie au serveur
   
     const options = {
       method: 'POST',
